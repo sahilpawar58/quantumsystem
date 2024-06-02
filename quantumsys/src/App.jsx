@@ -1,4 +1,4 @@
-import { useState,useEffect } from 'react'
+import { useState,useEffect,useRef} from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import "./App.css"
@@ -18,13 +18,19 @@ import gsap from 'gsap';
 import WindowCard from './WindowCard';
 import { Service } from './Services'
 import { Service_Two } from './Services_two'
+import { ReactLenis, useLenis } from 'lenis/react'
 
 import Hero from './Hero'
+import { Service_Three } from './Services_Three'
+import { Client } from './Client'
 
 
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
+  const lenis = useLenis(({ scroll }) => {
+    // called every scroll
+  })
 
   gsap.to(".most_middle_second_top",{
     y:-60,
@@ -211,7 +217,8 @@ function App() {
   
   return (
     <>
-    <div data-scroll-container >
+    <ReactLenis root>
+    <div  >
     <div className='w-full h-full ' > 
     <MeshGradientRenderer
      className="gradient w-full h-full top-0 clip-your-needful-style gradient-background"
@@ -271,8 +278,12 @@ function App() {
     
    
     
+    <Service />
     <Service_Two />
+    <Service_Three />
+    <Client />
     </div>
+    </ReactLenis>
     </>
   )
 }
